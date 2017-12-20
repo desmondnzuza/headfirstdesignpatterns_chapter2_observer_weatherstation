@@ -13,7 +13,7 @@ namespace WeatherStation.Equipment.DisplayElement
 
         public StatisticsDisplayElement(ISubject subject)
         {
-            _subject = subject;
+            _subject            = subject;
             _temparatureHistory = new List<float>();
             
            subject.RegisterObserver(this);
@@ -30,6 +30,7 @@ namespace WeatherStation.Equipment.DisplayElement
             var avg = _temparatureHistory.Average();
             var max = _temparatureHistory.Max();
             var min = _temparatureHistory.Min();
+
             Console.WriteLine($"Avg/Max/Min temperature = {avg}/{max}/{min}");
         }
     }

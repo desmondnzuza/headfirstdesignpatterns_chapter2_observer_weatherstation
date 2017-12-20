@@ -25,6 +25,7 @@ namespace WeatherStation
             {
                 Console.WriteLine("What do you want to do? 1) Update Measurements 2) Subscribe 3) UnSubscribe 4)Refesh");
                 var answer = Console.ReadLine();
+
                 if (answer == "1")
                 {
                     Console.WriteLine("Enter New Measurements([temp], [humidity], [pressure])");
@@ -57,7 +58,6 @@ namespace WeatherStation
                 }
 
             } while (!endProgram);
-
 
             Console.WriteLine("press any key to exit");
             Console.ReadLine();

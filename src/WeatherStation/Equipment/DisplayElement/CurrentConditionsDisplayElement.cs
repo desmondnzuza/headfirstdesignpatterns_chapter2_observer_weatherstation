@@ -14,12 +14,13 @@ namespace WeatherStation.Equipment.DisplayElement
         public CurrentConditionsDisplayElement(ISubject subject)
         {
             _subject = subject;
+
             subject.RegisterObserver(this);
         }
 
         public void Update(float temp, float humidity, float pressure)
         {
-            _temp = temp;
+            _temp     = temp;
             _humidity = humidity;
 
             this.Display();
@@ -27,7 +28,7 @@ namespace WeatherStation.Equipment.DisplayElement
 
         public void Display()
         {
-            Console.WriteLine($"Current Condition : {_temp }F degrees and {_humidity} humidity");
+            Console.WriteLine($"Current Condition : {_temp}F degrees and {_humidity} humidity");
         }
     }
 }

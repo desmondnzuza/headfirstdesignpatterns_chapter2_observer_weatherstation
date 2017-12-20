@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WeatherStation.Helpers;
 using WeatherStation.Observer;
 using WeatherStation.Subject;
 
@@ -14,7 +15,7 @@ namespace WeatherStation.Equipment.DisplayElement
 
         public ForcastDisplayElement(ISubject subject)
         {
-            _subject = subject;
+            _subject         = subject;
             _pressureHistory = new List<float>();
 
             subject.RegisterObserver(this);
@@ -28,25 +29,27 @@ namespace WeatherStation.Equipment.DisplayElement
 
         public void Display()
         {
-            var prev = _pressureHistory.Count() > 1 ? _pressureHistory[_pressureHistory.Count - 2] : 0;
-            var current = _pressureHistory.Last();
-            var message = string.Empty;
-
-            if (current > prev)
-            {
-                message = "It's getting hot";
-            }
-            else if (current == prev)
-            {
-                message = "More of the same";
-            }
-            else if (current < prev)
-            {
-                message = "It's getting colder";
-            }
-
+            var message = GenerateMessage();
 
             Console.WriteLine($"ForcastDisplayElement : {message}");
+        }
+
+        private string GenerateMessage()
+        {
+            var previouse = _pressureHistory.HasHistory() ? _pressureHistory.Previous() : 0;
+            var current   = _pressureHistory.Last();
+
+            if (current > previouse)
+            {
+                return "It's getting hot";
+            }
+
+            if (current < previouse)
+            {
+                return "It's getting colder";
+            }
+
+            return "More of the same";
         }
     }
 }

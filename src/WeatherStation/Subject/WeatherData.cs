@@ -43,7 +43,7 @@ namespace WeatherStation.Subject
 
         public void SetMeasurements(float temp, float humidiy, float pressure)
         {
-            _temp = temp;
+            _temp     = temp;
             _humidity = humidiy;
             _pressure = pressure;
 
