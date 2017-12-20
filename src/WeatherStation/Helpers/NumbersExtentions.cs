@@ -4,14 +4,19 @@ namespace WeatherStation.Helpers
 {
     internal static class NumbersExtentions
     {
-        internal static bool HasHistory(this List<float> numbers)
+        private static bool HasHistory(List<float> numbers)
         {
-            return numbers.Count > 1;
+            return numbers != null && numbers.Count > 1;
         }
 
-        internal static float Previous(this List<float> numbers)
+        internal static float Previous(this List<float> numbers, float defaultValue = 0)
         {
-            return numbers[numbers.Count - 2];
+            if (HasHistory(numbers))
+            {
+                return numbers[numbers.Count - 2];
+            }
+
+            return defaultValue;
         }
     }
 }
