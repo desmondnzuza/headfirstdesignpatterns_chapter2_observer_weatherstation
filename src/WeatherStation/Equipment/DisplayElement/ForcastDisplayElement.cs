@@ -36,15 +36,15 @@ namespace WeatherStation.Equipment.DisplayElement
 
         private string GenerateMessage()
         {
-            var previouse = _pressureHistory.HasHistory() ? _pressureHistory.Previous() : 0;
-            var current   = _pressureHistory.Last();
+            var oldPressure       = _pressureHistory.Previous();
+            var currentPressure   = _pressureHistory.Last();
 
-            if (current > previouse)
+            if (currentPressure > oldPressure)
             {
                 return "It's getting hot";
             }
 
-            if (current < previouse)
+            if (currentPressure < oldPressure)
             {
                 return "It's getting colder";
             }
