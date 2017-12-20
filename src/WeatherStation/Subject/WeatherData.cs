@@ -48,7 +48,6 @@ namespace WeatherStation.Subject
             _pressure = pressure;
 
             this.MeausreMentsChanged();
-
         }
     }
 }
